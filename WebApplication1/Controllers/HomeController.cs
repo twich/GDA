@@ -39,7 +39,7 @@ namespace WebApplication1.Controllers
             try
             {
                 string searchRequest = CreateRequest();
-                GdJsonResponse searchResults = MakeRequest(searchRequest);
+                Rootobject searchResults = MakeRequest(searchRequest);
 
                 //Assemble company list
                 var companyList = new List<CompanyHeader>();
@@ -63,7 +63,7 @@ namespace WebApplication1.Controllers
             return (UrlRequest);
         }
 
-        public static GdJsonResponse MakeRequest(string requestUrl)
+        public static Rootobject MakeRequest(string requestUrl)
         {
            // I think that we can let any exceptions that fall to the calling method's catch block and return the 
            // Error view
@@ -78,9 +78,9 @@ namespace WebApplication1.Controllers
                         "Server error (HTTP {0}: {1}).",
                         response.StatusCode,
                         response.StatusDescription));
-                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(GdJsonResponse));
+                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(Rootobject));
                     object objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
-                    GdJsonResponse jsonResponse = objResponse as GdJsonResponse;
+                    Rootobject jsonResponse = objResponse as Rootobject;
                     return jsonResponse;
                 }
             //}
@@ -94,16 +94,16 @@ namespace WebApplication1.Controllers
              */
         }
 
-        public List<CompanyHeader> makeCompanyList(GdJsonResponse searchResults)
+        public List<CompanyHeader> makeCompanyList(Rootobject searchResults)
         {
             var companyList = new List<CompanyHeader>();
-            int compNumber = searchResults.Response[0].Employers.Length;
-            for (int i = 0; i < compNumber; i++)
+            int numberOfCompanies = searchResults.response.employers.Length;
+            for (int i = 0; i < numberOfCompanies; i++)
             {
                 companyList.Add(new CompanyHeader {
-                    CompanyName = searchResults.Response[0].Employers[i].Name,
-                    AverageRating = searchResults.Response[0].Employers[i].OverallRating,
-                    LogoURL= searchResults.Response[0].Employers[i].SquareLogo
+                    CompanyName = searchResults.response.employers[i].name,
+                    AverageRating = searchResults.response.employers[i].overallRating,
+                    LogoURL= searchResults.response.employers[i].squareLogo
                 });
             }
             return companyList;

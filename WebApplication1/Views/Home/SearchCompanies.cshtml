@@ -2,14 +2,16 @@
 @{
     ViewBag.Title = "Search Results";
    // Layout = Layout = "~/Views/Shared/_SearchResults.cshtml";
+   
 }
 
 
 <h2>Search Results</h2>
 
 <ul data-role="listview" data-inset="true">
-    @foreach (WebApplication1.Models.CompanyHeader c in ViewBag.CompanyList)
+    @foreach (WebApplication1.Models.CompanyHeader c in (ViewBag.Companies as List<CompanyHeader>))
     {
         <li>@c.CompanyName</li>
     }
 </ul>
+<a href='http://www.glassdoor.com/index.htm'>powered by <img src='http://www.glassdoor.com/static/img/api/glassdoor_logo_80.png' title='Job Search' /></a>
