@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquerymobile")
+</head>
+
+<body>
+    <div data-role="page">
+
+        <div data-role="panel" id="assgn-panel">
+            <h2>Jump to...</h2>
+            <ul data-role="listview" data-inset="true">
+                <li>@Html.ActionLink("Assignment 1", "Assgn1", "Assignment")</li>
+                <li>@Html.ActionLink("Assignment 2", "Assgn2", "Assignment")</li>
+                <li>@Html.ActionLink("Assignment 3", "Assgn3", "Assignment")</li>
+                <li>@Html.ActionLink("Assignment 4", "Assgn4", "Assignment")</li>
+                <li>@Html.ActionLink("Assignment 5", "Assgn5", "Assignment")</li>
+                <li>@Html.ActionLink("Assignment 6", "Assgn6", "Assignment")</li>
+                <li>@Html.ActionLink("Assignment 7", "Assgn7", "Assignment")</li>
+                <li>@Html.ActionLink("Assignment 8", "Assgn8", "Assignment")</li>
+                <li>@Html.ActionLink("Final", "Final", "Assignment")</li>
+            </ul>
+        </div>
+
+        <div data-role="header">
+            <h1>@ViewBag.title</h1>
+        </div>
+
+        <div data-role="main" class="ui-content">
+            @RenderBody()
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { data_icon = "home" })</li>
+                    <li><a href="#assgn-panel" data-icon="grid">Assignments</a></li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home",null,new { data_icon = "mail" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
