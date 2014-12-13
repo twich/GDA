@@ -1,78 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Runtime.Serialization.Json;
-using System.Net;
 using System.Runtime.Serialization;
-using WebApplication1.Models;
+using System.Text;
+using System.Threading.Tasks;
 
-
-
-namespace WebApplication1.Controllers
+namespace WebApplication1.Models
 {
-    public class HomeController : Controller
-    {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-        
-        public static string CreateRequest(string queryState, string queryIndustry)
-        {
-            //The parameters still need to be added to the URL
-            //we also need to set up a page parameter...I'm not sure what the best way would be...If we some how associate it with the buttons
-            //so that a right arrow adds one, left arrow subtracts
-            string UrlRequest = "http://api.glassdoor.com/api/api.htm?t.p=26578&t.k=jX8BMvJLWAE&userip=0.0.0.0&useragent=SO/1.0&format=json&v=1&action=employers";
-            return (UrlRequest);
-        }
-        public static GdJsonResponse MakeRequest(string requestUrl)
-        {
-            try
-            {
-                HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest;
-                using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-                {
-                    if (response.StatusCode != HttpStatusCode.OK)
-                        throw new Exception(String.Format(
-                        "Server error (HTTP {0}: {1}).",
-                        response.StatusCode,
-                        response.StatusDescription));
-                    DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(GdJsonResponse));
-                    object objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
-                    GdJsonResponse jsonResponse = objResponse as GdJsonResponse;
-                    return jsonResponse;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return null;
-            }
-        }
-
-
-
-        
-    }
-    /*
-     * These were moved to Models/ResponseModels.cs
-     * 
     [DataContract]
     public class GdJsonResponse
     {
@@ -84,7 +18,7 @@ namespace WebApplication1.Controllers
         public string Status { get; set; }
 
         [DataMember(Name = "response")]
-        public Responses[] Responses { get; set; }
+        public Responses[] Response { get; set; }
     }
 
     [DataContract]
@@ -217,5 +151,4 @@ namespace WebApplication1.Controllers
         [DataMember(Name = "width")]
         public int Width { get; set; }
     }
-     */
 }
