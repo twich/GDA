@@ -33,24 +33,30 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public ActionResult SearchCompanies(string searchState, string searchIndustry)
+        // TODO: Add accomodation for form parameters
+        public ActionResult SearchCompanies()
         {
             try
             {
-                string searchRequest = CreateRequest(searchState, searchIndustry);
+                string searchRequest = CreateRequest();
                 GdJsonResponse searchResults = MakeRequest(searchRequest);
-                return View(searchResults);
+
+                //Assemble company list
+                var companyList = new List<CompanyHeader>();
+                companyList = makeCompanyList(searchResults);
+                ViewBag.Companies = companyList;
+                return View();
             }
 
             // TODO: Add the catch block handling and make sure it reaches a view
             catch (Exception)
             {
 
-                return View();
+                return View("Error");
             }
         }
-
-        public static string CreateRequest(string queryState, string queryIndustry)
+        // TODO: Add accomodation for form parameters
+        public static string CreateRequest()
         {
             // TODO: Incorporate the query criteria
             string UrlRequest = "http://api.glassdoor.com/api/api.htm?t.p=26578&t.k=jX8BMvJLWAE&userip=0.0.0.0&useragent=SO/1.0&format=json&v=1&action=employers";
@@ -59,8 +65,10 @@ namespace WebApplication1.Controllers
 
         public static GdJsonResponse MakeRequest(string requestUrl)
         {
-            try
-            {
+           // I think that we can let any exceptions that fall to the calling method's catch block and return the 
+           // Error view
+           // try
+           // {
                 HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest;
                 using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
                 {
@@ -75,15 +83,30 @@ namespace WebApplication1.Controllers
                     GdJsonResponse jsonResponse = objResponse as GdJsonResponse;
                     return jsonResponse;
                 }
-            }
+            //}
 
-            // TODO: Build out this catch block so that the output makes its way to a view
+            /* TODO: Build out this catch block so that the output makes its way to a view
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return null;
             }
+             */
         }
-        
+
+        public List<CompanyHeader> makeCompanyList(GdJsonResponse searchResults)
+        {
+            var companyList = new List<CompanyHeader>();
+            int compNumber = searchResults.Response[0].Employers.Length;
+            for (int i = 0; i < compNumber; i++)
+            {
+                companyList.Add(new CompanyHeader {
+                    CompanyName = searchResults.Response[0].Employers[i].Name,
+                    AverageRating = searchResults.Response[0].Employers[i].OverallRating,
+                    LogoURL= searchResults.Response[0].Employers[i].SquareLogo
+                });
+            }
+            return companyList;
+        }
     }
 }

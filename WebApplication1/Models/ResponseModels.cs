@@ -10,7 +10,6 @@ namespace WebApplication1.Models
     [DataContract]
     public class GdJsonResponse
     {
-
         [DataMember(Name = "success")]
         public bool Success { get; set; }
 
@@ -150,5 +149,12 @@ namespace WebApplication1.Models
 
         [DataMember(Name = "width")]
         public int Width { get; set; }
+    }
+
+    public class CompanyHeader
+    {
+        public string CompanyName { get; set; }
+        public decimal AverageRating { get; set; }
+        public string LogoURL { get; set; }
     }
 }

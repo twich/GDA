@@ -1,9 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "SearchCompanies";
-    Layout = Layout = "~/Views/Shared/_SearchResults.cshtml";
-}
+    ViewBag.Title = "Search Results";
+   // Layout = Layout = "~/Views/Shared/_SearchResults.cshtml";
 }
 
-<h2>SearchCompanies</h2>
 
+<h2>Search Results</h2>
+
+<ul data-role="listview" data-inset="true">
+    @foreach (WebApplication1.Models.CompanyHeader c in ViewBag.CompanyList)
+    {
+        <li>@c.CompanyName</li>
+    }
+</ul>

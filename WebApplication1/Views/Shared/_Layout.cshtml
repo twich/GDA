@@ -13,17 +13,11 @@
     <div data-role="page">
 
         <div data-role="panel" id="assgn-panel">
-            <h2>Jump to...</h2>
+            <h2>Menu</h2>
             <ul data-role="listview" data-inset="true">
-                <li>@Html.ActionLink("Assignment 1", "Assgn1", "Assignment")</li>
-                <li>@Html.ActionLink("Assignment 2", "Assgn2", "Assignment")</li>
-                <li>@Html.ActionLink("Assignment 3", "Assgn3", "Assignment")</li>
-                <li>@Html.ActionLink("Assignment 4", "Assgn4", "Assignment")</li>
-                <li>@Html.ActionLink("Assignment 5", "Assgn5", "Assignment")</li>
-                <li>@Html.ActionLink("Assignment 6", "Assgn6", "Assignment")</li>
-                <li>@Html.ActionLink("Assignment 7", "Assgn7", "Assignment")</li>
-                <li>@Html.ActionLink("Assignment 8", "Assgn8", "Assignment")</li>
-                <li>@Html.ActionLink("Final", "Final", "Assignment")</li>
+                <li>@Html.ActionLink("Search", "Index", "Home", null, new { data_icon = "search" })</li>
+                <li><a href="#assgn-panel" data-icon="grid">Assignments</a></li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { data_icon = "mail" })</li>
             </ul>
         </div>
 
