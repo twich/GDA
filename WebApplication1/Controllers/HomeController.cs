@@ -32,15 +32,31 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        
+
+        public ActionResult SearchCompanies(string searchState, string searchIndustry)
+        {
+            try
+            {
+                string searchRequest = CreateRequest(searchState, searchIndustry);
+                GdJsonResponse searchResults = MakeRequest(searchRequest);
+                return View(searchResults);
+            }
+
+            // TODO: Add the catch block handling
+            catch (Exception)
+            {
+
+                return View();
+            }
+        }
+
         public static string CreateRequest(string queryState, string queryIndustry)
         {
-            //The parameters still need to be added to the URL
-            //we also need to set up a page parameter...I'm not sure what the best way would be...If we some how associate it with the buttons
-            //so that a right arrow adds one, left arrow subtracts
+            // TODO: Incorporate the query criteria
             string UrlRequest = "http://api.glassdoor.com/api/api.htm?t.p=26578&t.k=jX8BMvJLWAE&userip=0.0.0.0&useragent=SO/1.0&format=json&v=1&action=employers";
             return (UrlRequest);
         }
+
         public static GdJsonResponse MakeRequest(string requestUrl)
         {
             try
@@ -48,6 +64,7 @@ namespace WebApplication1.Controllers
                 HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest;
                 using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
                 {
+                    // TODO: Make sure this error makes it back to a view
                     if (response.StatusCode != HttpStatusCode.OK)
                         throw new Exception(String.Format(
                         "Server error (HTTP {0}: {1}).",
@@ -59,12 +76,15 @@ namespace WebApplication1.Controllers
                     return jsonResponse;
                 }
             }
+
+            // TODO: Build out this catch block so that the output makes its way to a view
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return null;
             }
         }
+        
 
 
 
