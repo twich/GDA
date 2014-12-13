@@ -36,6 +36,7 @@ namespace WebApplication1.Controllers
         // TODO: Add accomodation for form parameters
         public ActionResult SearchCompanies()
         {
+            //string queryState, string queryindustry, int currentPageNumber
             try
             {
                 string searchRequest = CreateRequest();
@@ -59,7 +60,7 @@ namespace WebApplication1.Controllers
         public static string CreateRequest()
         {
             // TODO: Incorporate the query criteria
-            string UrlRequest = "http://api.glassdoor.com/api/api.htm?t.p=26578&t.k=jX8BMvJLWAE&userip=0.0.0.0&useragent=SO/1.0&format=json&v=1&action=employers";
+            string UrlRequest = "http://api.glassdoor.com/api/api.htm?t.p=26578&t.k=jX8BMvJLWAE&userip=0.0.0.0&useragent=SO/1.0&format=json&v=1&action=employers&state=utah&ps=20";
             return (UrlRequest);
         }
 
@@ -100,6 +101,7 @@ namespace WebApplication1.Controllers
             int numberOfCompanies = searchResults.response.employers.Length;
             for (int i = 0; i < numberOfCompanies; i++)
             {
+                
                 companyList.Add(new CompanyHeader {
                     CompanyName = searchResults.response.employers[i].name,
                     AverageRating = searchResults.response.employers[i].overallRating,
