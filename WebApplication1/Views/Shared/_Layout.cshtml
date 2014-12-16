@@ -11,7 +11,7 @@
 
 <body>
     <div data-role="page">
-
+        <!--
         <div data-role="panel" id="assgn-panel">
             <h2>Menu</h2>
             <ul data-role="listview" data-inset="true">
@@ -20,7 +20,7 @@
                 <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { data_icon = "mail" })</li>
             </ul>
         </div>
-
+        -->
         <div data-role="header">
             <h1>@ViewBag.title</h1>
         </div>
@@ -32,9 +32,10 @@
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar">
                 <ul>
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { data_icon = "home" })</li>
-                    <li><a href="#assgn-panel" data-icon="grid">Assignments</a></li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home",null,new { data_icon = "mail" })</li>
+                    <li>@Html.ActionLink("Search", "Index", "Home", null, new { data_icon = "search" })</li>
+                    <!--<li><a href="#assgn-panel" data-icon="grid">Assignments</a></li>-->
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", null,new { data_icon = "mail" })</li>
+                    <li>@Html.Partial("_LoginPartial")</li>
                 </ul>
             </div>
         </div>

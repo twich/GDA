@@ -2,14 +2,15 @@
     ViewBag.Title = "Search for Companies";
 
 }
+@model IEnumerable<System.Web.Mvc.SelectListItem>
 
 <h1>Search</h1>
+@{Html.BeginForm("SearchCompanies","Home");}
+@Html.DropDownList("state",Model);
+<input type="submit" name="sumbit" value="Search" />
+@{Html.EndForm();}
 
-
-
-
-
-<div data-role="main">
+<!--<div data-role="main">
     <form method="" action="">
         <fieldset>
             <label for="select-choice-0">Choose the state in which you would like to work</label>
@@ -67,7 +68,7 @@
                 <option value="WY">Wyoming</option>
             </select>
         </fieldset>
-        @Html.ActionLink("Go", "SearchCompanies", "Home")
+
     </form>
 </div>
 
@@ -126,5 +127,5 @@ List<string>
                             stateList.Add("Wisconsin");
                             stateList.Add("Wyoming");
 
-                            ViewData["States"] new SelectLists(statesList);
+                            ViewData["States"] new SelectLists(statesList);-->
         <!--Selected item needs to be assigned to a variable and then passed into the glass door url string-->
