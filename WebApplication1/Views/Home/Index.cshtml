@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Search for Companies";  
+    ViewBag.Title = "Search for Companies";
 
 }
 
@@ -7,13 +7,124 @@
 
 
 
-@Html.ActionLink("Go", "SearchCompanies", "Home")
 
 
+<div data-role="main">
+    <form method="" action="">
+        <fieldset>
+            <label for="select-choice-0">Choose the state in which you would like to work</label>
+            <select name="select-choice-0" id="select-choice-0">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DC">District of Columbia</option>
+                <option value="DE">Delaware</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+            </select>
+        </fieldset>
+        @Html.ActionLink("Go", "SearchCompanies", "Home")
+    </form>
+</div>
 
+List<string>
+    stateList = new List<string>
+        ();
+                            stateList.Add("Alabama");
+                            stateList.Add("Alaska");
+                            stateList.Add("Arizona");
+                            stateList.Add("Arkansas");
+                            stateList.Add("California");
+                            stateList.Add("Colorado");
+                            stateList.Add("Connecticut");
+                            stateList.Add("District of Columbia");
+                            stateList.Add("Delaware");
+                            stateList.Add("Florida");
+                            stateList.Add("Georgia");
+                            stateList.Add("Hawaii");
+                            stateList.Add("Idaho");
+                            stateList.Add("Illinois");
+                            stateList.Add("Indiana");
+                            stateList.Add("Iowa");
+                            stateList.Add("Kansas");
+                            stateList.Add("Kentucky");
+                            stateList.Add("Louisiana");
+                            stateList.Add("Maine");
+                            stateList.Add("Maryland");
+                            stateList.Add("Massachusetts");
+                            stateList.Add("Michigan");
+                            stateList.Add("Minnesota");
+                            stateList.Add("Mississippi");
+                            stateList.Add("Missouri");
+                            stateList.Add("Montana");
+                            stateList.Add("Nebraska");
+                            stateList.Add("Nevada");
+                            stateList.Add("New Hampshire");
+                            stateList.Add("New Jersey");
+                            stateList.Add("New Mexico");
+                            stateList.Add("New York");
+                            stateList.Add("North Carolina");
+                            stateList.Add("North Dakota");
+                            stateList.Add("Ohio");
+                            stateList.Add("Oklahoma");
+                            stateList.Add("Oregon");
+                            stateList.Add("Pennsylvania");
+                            stateList.Add("Rhode Island");
+                            stateList.Add("South Carolina");
+                            stateList.Add("South Dakota");
+                            stateList.Add("Tennessee");
+                            stateList.Add("Texas");
+                            stateList.Add("Utah");
+                            stateList.Add("Vermont");
+                            stateList.Add("Virginia");
+                            stateList.Add("Washington");
+                            stateList.Add("West Virginia");
+                            stateList.Add("Wisconsin");
+                            stateList.Add("Wyoming");
 
-
-
-
-
-
+                            ViewData["States"] new SelectLists(statesList);
+        <!--Selected item needs to be assigned to a variable and then passed into the glass door url string-->
